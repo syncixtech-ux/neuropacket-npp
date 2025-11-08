@@ -104,6 +104,34 @@
             font-size: 1.1em;
             margin-bottom: 30px;
         }
+        .card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background: #3498db;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #2980b9;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: #2c3e50;
+        }
+        .btn-primary:hover {
+            background: #1a252f;
+        }
     </style>
 </head>
 <body>
@@ -111,12 +139,38 @@
         <h1>Neuropacket & Neuropacket Protocol (NPP) — Free Minimal</h1>
         <p class="subtitle">Standard layout + tiny validator + smoke scripts. Built by SYNC‑IX Technologies.</p>
 
+        <div class="card">
+            <p>
+                <a class="btn btn-primary"
+                   href="https://github.com/syncixtech-ux/neuropacket-npp/archive/refs/heads/main.zip">
+                    Download (.zip)
+                </a>
+                <a class="btn" href="https://github.com/syncixtech-ux/neuropacket-npp">
+                    View on GitHub
+                </a>
+                <!-- GitHub Pages only serves /docs, so link to RAW files for schema/proto -->
+                <a class="btn"
+                   href="https://raw.githubusercontent.com/syncixtech-ux/neuropacket-npp/main/schema/neuropacket.schema.json">
+                    JSON Schema
+                </a>
+                <a class="btn"
+                   href="https://raw.githubusercontent.com/syncixtech-ux/neuropacket-npp/main/proto/neuropacket.proto">
+                    Protobuf
+                </a>
+            </p>
+        </div>
+
         <h2>Quick Start</h2>
-        <p>Validate included examples:</p>
+        
+        <h3>Get the schema locally</h3>
+        <pre><code><span class="cmd">curl -L -o neuropacket.schema.json \
+  https://raw.githubusercontent.com/syncixtech-ux/neuropacket-npp/main/schema/neuropacket.schema.json</span></code></pre>
+
+        <h3>Validate included examples</h3>
         <pre><code><span class="cmd">python3 tools/npp_validator.py tests/vectors/ok_min.json</span>
 <span class="cmd">python3 tools/npp_validator.py tests/vectors/bad_signature.json</span></code></pre>
 
-        <p>Generate and validate demo packets:</p>
+        <h3>Generate and validate demo packets</h3>
         <pre><code><span class="cmd">python3 tools/smoke_ok.py</span>   <span class="comment"># PASS</span>
 <span class="cmd">python3 tools/smoke_bad.py</span>  <span class="comment"># FAIL + reasons</span></code></pre>
 
