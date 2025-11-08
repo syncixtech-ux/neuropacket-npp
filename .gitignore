@@ -1,0 +1,21 @@
+# Generated files
+tests/vectors/_smoke_*.json
+tests/vectors/sample_*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
