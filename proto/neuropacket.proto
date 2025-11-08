@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package neuropacket;
+
+// Neuropacket v1-min - Optional Protobuf Schema
+// This schema provides a binary-serializable alternative to JSON.
+
+message Neuropacket {
+  string version = 1;
+  string packet_id = 2;
+  string ts = 3;
+  string subject_id = 4;
+  Source source = 5;
+  Metrics metrics = 6;
+  State state = 7;
+  Quality quality = 8;
+  string calibration_id = 9;
+  Privacy privacy = 10;
+  Integrity integrity = 11;
+}
+
+message Source {
+  string device_id = 1;
+  string sensor_profile = 2;
+}
+
+message Metrics {
+  optional double hr_bpm = 1;
+  optional double hrv_rmssd_ms = 2;
+  optional double eda_uS = 3;
+  optional double skin_temp_c = 4;
+  optional double resp_bpm = 5;
+  optional double spo2_pct = 6;
+}
+
+message State {
+  double valence = 1;
+  double arousal = 2;
+  double stress = 3;
+  double cognitive_load = 4;
+  double resilience = 5;
+  double confidence = 6;
+}
+
+message Quality {
+  double artifact_score = 1;
+  bool calibrated = 2;
+  repeated string missing = 3;
+}
+
+message Privacy {
+  string consent_token = 1;
+  string retention = 2;
+  repeated string scopes = 3;
+}
+
+message Integrity {
+  string hash = 1;
+  string signature = 2;
+  string key_id = 3;
+}

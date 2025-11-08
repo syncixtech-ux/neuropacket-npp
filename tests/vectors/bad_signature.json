@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "packet_id": "7e4b9f42-4c48-4e31-8c77-7f7bb4a9c9f5",
+  "ts": "2025-11-08T00:00:00Z",
+  "subject_id": "anon:abc",
+  "source": {
+    "device_id": "edge-1",
+    "sensor_profile": "PPG"
+  },
+  "metrics": {
+    "hr_bpm": 65,
+    "hrv_rmssd_ms": 25,
+    "eda_uS": 2.1,
+    "skin_temp_c": 32.0,
+    "resp_bpm": 10,
+    "spo2_pct": 97
+  },
+  "state": {
+    "valence": 0.5,
+    "arousal": 0.5,
+    "stress": 0.5,
+    "cognitive_load": 0.5,
+    "resilience": 0.5,
+    "confidence": 0.9
+  },
+  "quality": {
+    "artifact_score": 0.1,
+    "calibrated": true,
+    "missing": []
+  },
+  "calibration_id": "cal-1",
+  "privacy": {
+    "retention": "P7D",
+    "scopes": [
+      "local_only"
+    ]
+  },
+  "integrity": {
+    "hash": "",
+    "signature": "",
+    "key_id": ""
+  }
+}

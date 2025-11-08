@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuropacket & NPP — Free Minimal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+        }
+        h3 {
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "Courier New", monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        pre code {
+            background: none;
+            color: #ecf0f1;
+            padding: 0;
+        }
+        .cmd {
+            color: #3498db;
+        }
+        .comment {
+            color: #95a5a6;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #777;
+            font-size: 0.9em;
+        }
+        .highlight {
+            background: #fff9e6;
+            padding: 15px;
+            border-left: 4px solid #f39c12;
+            margin: 15px 0;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Neuropacket & Neuropacket Protocol (NPP) — Free Minimal</h1>
+        <p class="subtitle">Standard layout + tiny validator + smoke scripts. Built by SYNC‑IX Technologies.</p>
+
+        <h2>Quick Start</h2>
+        <p>Validate included examples:</p>
+        <pre><code><span class="cmd">python3 tools/npp_validator.py tests/vectors/ok_min.json</span>
+<span class="cmd">python3 tools/npp_validator.py tests/vectors/bad_signature.json</span></code></pre>
+
+        <p>Generate and validate demo packets:</p>
+        <pre><code><span class="cmd">python3 tools/smoke_ok.py</span>   <span class="comment"># PASS</span>
+<span class="cmd">python3 tools/smoke_bad.py</span>  <span class="comment"># FAIL + reasons</span></code></pre>
+
+        <h2>About SYNC‑IX</h2>
+        <p>SYNC‑IX builds the adaptive intelligence layer so software can respond to people with nuance, safety, and respect.</p>
+        <p><a href="ABOUT_SYNC_IX.md">Read more →</a></p>
+        <ul>
+            <li><strong>Website:</strong> <a href="https://sync-ix.com">sync‑ix.com</a></li>
+            <li><strong>Email:</strong> <a href="mailto:syncix.tech@gmail.com">syncix.tech@gmail.com</a></li>
+        </ul>
+
+        <h2>Neuropacket Layout (Free)</h2>
+        <p>Required fields and units in one page.</p>
+        <p><a href="LAYOUT.md">View layout →</a></p>
+        <ul>
+            <li><strong>JSON Schema:</strong> <code>schema/neuropacket.schema.json</code></li>
+            <li><strong>Protobuf:</strong> <code>proto/neuropacket.proto</code></li>
+        </ul>
+
+        <h2>Minimal Packet Template</h2>
+        <pre><code>{
+  "version": "1.0.0",
+  "packet_id": "REPLACE_WITH_UUID_V4",
+  "ts": "2025-11-08T00:00:00.000Z",
+  "subject_id": "anon:some-id",
+  "source": { "device_id": "edge-1", "sensor_profile": "PPG" },
+  "metrics": { "hr_bpm": 72, "hrv_rmssd_ms": 32, "eda_uS": 4.1, "skin_temp_c": 33.0, "resp_bpm": 12, "spo2_pct": 98 },
+  "state": { "valence": 0.5, "arousal": 0.4, "stress": 0.3, "cognitive_load": 0.5, "resilience": 0.7, "confidence": 0.9 },
+  "quality": { "artifact_score": 0.08, "calibrated": true, "missing": [] },
+  "calibration_id": "cal-demo",
+  "privacy": { "consent_token": "jwt:demo", "retention": "P7D", "scopes": ["local_only"] },
+  "integrity": { "hash": "blake3:demo", "signature": "ed25519:demo", "key_id": "k1" }
+}</code></pre>
+
+        <div class="highlight">
+            <strong>Note:</strong> Free validator checks field presence, ranges, and formats; it does not perform cryptographic verification.
+        </div>
+
+        <div class="footer">
+            <p>© 2025 SYNC‑IX Technologies · Neuropacket & NPP (Free Minimal)</p>
+        </div>
+    </div>
+</body>
+</html>
