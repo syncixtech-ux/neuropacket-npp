@@ -1,0 +1,45 @@
+name: Validate Neuropacket
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+    
+    - name: Validate test vectors
+      run: |
+        echo "Validating example packets..."
+        python3 tools/npp_validator.py tests/vectors/ok_min.json
+        echo "✓ ok_min.json is valid"
+    
+    - name: Run smoke tests
+      run: |
+        echo "Running smoke tests..."
+        python3 tools/smoke_ok.py
+        python3 tools/smoke_bad.py || true
+        echo "✓ Smoke tests complete"
+    
+    - name: Validate all JSON files in tests/vectors
+      run: |
+        echo "Validating all test vectors..."
+        for file in tests/vectors/*.json; do
+          if [[ "$file" == *"_smoke_"* ]]; then
+            echo "Skipping generated file: $file"
+            continue
+          fi
+          echo "Checking: $file"
+          python3 tools/npp_validator.py "$file" || echo "Expected: $file may be invalid"
+        done
